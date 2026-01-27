@@ -44,7 +44,7 @@ struct Metrics {
     // layout
     static constexpr int Layout_TopLevelMarginWidth = 10;
     static constexpr int Layout_ChildMarginWidth = 6;
-    static constexpr int Layout_DefaultSpacing = 8;
+    static constexpr int Layout_DefaultSpacing = 6;
 
     // line editors
     static constexpr int LineEdit_FrameWidth = 6;
@@ -54,7 +54,7 @@ struct Metrics {
     static constexpr int MenuItem_MarginWidth = 4;
     static constexpr int MenuItem_HighlightGap = 4;
     static constexpr int MenuItem_ExtraLeftMargin = 4;
-    static constexpr int MenuItem_MarginHeight = 6;
+    static constexpr int MenuItem_MarginHeight = 4;
     static constexpr int MenuItem_ItemSpacing = 2;
     static constexpr int MenuItem_AcceleratorSpace = 16;
     static constexpr int MenuItem_TextLeftMargin = 8;
@@ -94,8 +94,8 @@ struct Metrics {
 
     // scrollbars
     static constexpr int ScrollBar_Extend = 21;
-    static constexpr int ScrollBar_SliderWidth = 10;
-    static constexpr int ScrollBar_MinSliderHeight = 30;
+    static constexpr int ScrollBar_SliderWidth = 8;
+    static constexpr int ScrollBar_MinSliderHeight = 20;
     static constexpr int ScrollBar_NoButtonHeight = 3;
     static constexpr int ScrollBar_SingleButtonHeight = ScrollBar_Extend;
     static constexpr int ScrollBar_DoubleButtonHeight = 2 * ScrollBar_Extend;
@@ -112,7 +112,7 @@ struct Metrics {
 
     // progressbars
     static constexpr int ProgressBar_BusyIndicatorSize = 14;
-    static constexpr int ProgressBar_Thickness = 10;
+    static constexpr int ProgressBar_Thickness = 6;
     static constexpr int ProgressBar_ItemSpacing = 4;
 
     // mdi title bar
@@ -147,7 +147,7 @@ struct Metrics {
     static constexpr int ToolTip_FrameWidth = 3;
 
     // list headers
-    static constexpr int Header_MarginWidth = 6;
+    static constexpr int Header_MarginWidth = 4;
     static constexpr int Header_ItemSpacing = 4;
     static constexpr int Header_ArrowSize = ArrowSize;
 
@@ -157,7 +157,7 @@ struct Metrics {
     static constexpr int SidePanel_ItemMarginWidth = 4;
 
     // splitter
-    static constexpr int Splitter_SplitterWidth = 1;
+    static constexpr int Splitter_SplitterWidth = 3;
 
     // shadow dimensions
     static constexpr int Shadow_Overlap = 2;
