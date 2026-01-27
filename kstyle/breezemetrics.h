@@ -106,7 +106,7 @@ struct Metrics {
     static constexpr int ToolBar_HandleWidth = 6;
     static constexpr int ToolBar_SeparatorWidth = 8;
     static constexpr int ToolBar_ExtensionWidth = 20;
-    static constexpr int ToolBar_ItemMargin = 6;
+    static constexpr int ToolBar_ItemMargin = 4;
     static constexpr int ToolBar_ItemSpacing = 0;
     static constexpr int ToolBar_SeparatorVerticalMargin = 2;
 
@@ -128,8 +128,8 @@ struct Metrics {
     static constexpr int TabBar_TabMarginHeight = 4;
     static constexpr int TabBar_TabMarginWidth = 8;
     static constexpr int TabBar_TabMinWidth = 80;
-    static constexpr int TabBar_TabMinHeight = 30;
-    static constexpr int TabBar_StaticTabMinHeight = 34;
+    static constexpr int TabBar_TabMinHeight = 28;
+    static constexpr int TabBar_StaticTabMinHeight = 30;
     static constexpr int TabBar_TabItemSpacing = 8;
     static constexpr int TabBar_TabOverlap = 1;
     static constexpr int TabBar_BaseOverlap = 2;

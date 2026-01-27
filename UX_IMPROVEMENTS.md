@@ -21,18 +21,24 @@ For users managing complex layouts (e.g., an IDE with 4 panes, a debugger, and a
 **Fix:** Reduced `Header_MarginWidth` from 6px to 4px.
 **Impact:** Allows for tighter column packing, displaying more data horizontally.
 
-### 3. Reverted "Modernization" Changes
-**Decision:** Previous attempts to increase global spacing (8px), menu margins (6px), and progress bar thickness (10px) have been **reverted**.
-**Reason:** These changes reduced information density. In a professional context, a thinner progress bar (6px) allows for more log output lines, and tighter menus (4px margins) allow more commands to be visible at once without scrolling.
+### 3. Toolbar Density
+**Issue:** Toolbars in professional apps (CAD, graphic design) often contain many small icons. The default `ToolBar_ItemMargin` (6px) wastes 12px of horizontal space per button (left+right), accumulating significantly across a wide toolbar.
+**Fix:** Reduced `ToolBar_ItemMargin` from 6px to 4px.
+**Impact:** Allows for more tools to be visible on a single line, reducing the need for overflow menus.
+
+### 4. Vertical Space Optimization (Tabs)
+**Issue:** Screen height is often the most constrained resource in coding and data analysis (16:9 aspect ratios). Default tab heights consume significant vertical space.
+**Fix:** Reduced `TabBar_TabMinHeight` (30px -> 28px) and `TabBar_StaticTabMinHeight` (34px -> 30px).
+**Impact:** Saves vertical pixels for the actual content (code, viewport) without compromising clickability on desktop.
 
 ## Performance & Legibility Optimization
 
-### 4. Progress Bar Rendering (Performance)
+### 5. Progress Bar Rendering (Performance)
 **Issue:** The busy indicator for progress bars was regenerating a `QPixmap` and creating a `QPainter` on every frame of the animation (60fps). This caused unnecessary CPU usage and allocations.
 **Fix:** Implemented `QPixmapCache` to store the generated pattern texture. The animation now uses `painter->setBrushOrigin()` to shift the texture, eliminating per-frame allocation.
 **Impact:** Reduced CPU usage for indeterminate progress bars.
 
-### 5. Arrow Contrast (Legibility)
+### 6. Arrow Contrast (Legibility)
 **Issue:** The `arrowShade` constant mixed arrow colors with the background by 15% (factor 0.15), reducing contrast. For small icons (10px), this reduced legibility, especially for "disabled" or "inactive" states.
 **Fix:** Reduced `arrowShade` to `0.0` (pure text color).
 **Impact:** Maximum contrast for small functional icons (spinboxes, comboboxes), improving legibility at small sizes.
@@ -41,6 +47,7 @@ For users managing complex layouts (e.g., an IDE with 4 panes, a debugger, and a
 To further support this workflow, future changes should follow this checklist:
 
 - [ ] **Density Check:** Does this change reduce the amount of visible code/model/data? If yes, reject.
+- [ ] **Vertical Bias:** Prioritize saving vertical space over horizontal space (widescreen monitors).
 - [ ] **Contrast vs. Size:** Use contrast/color to denote state rather than increasing element size.
 - [ ] **Fitts's Law for Tools:** Ensure "tools" (splitters, window edges) are grab-able, but keep "displays" (labels, padding) compact.
 - [ ] **Keyboard First:** Ensure all spacing adjustments respect focus indicators for keyboard navigation.
