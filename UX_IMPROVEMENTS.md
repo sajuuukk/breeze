@@ -25,6 +25,18 @@ For users managing complex layouts (e.g., an IDE with 4 panes, a debugger, and a
 **Decision:** Previous attempts to increase global spacing (8px), menu margins (6px), and progress bar thickness (10px) have been **reverted**.
 **Reason:** These changes reduced information density. In a professional context, a thinner progress bar (6px) allows for more log output lines, and tighter menus (4px margins) allow more commands to be visible at once without scrolling.
 
+## Performance & Legibility Optimization
+
+### 4. Progress Bar Rendering (Performance)
+**Issue:** The busy indicator for progress bars was regenerating a `QPixmap` and creating a `QPainter` on every frame of the animation (60fps). This caused unnecessary CPU usage and allocations.
+**Fix:** Implemented `QPixmapCache` to store the generated pattern texture. The animation now uses `painter->setBrushOrigin()` to shift the texture, eliminating per-frame allocation.
+**Impact:** Reduced CPU usage for indeterminate progress bars.
+
+### 5. Arrow Contrast (Legibility)
+**Issue:** The `arrowShade` constant mixed arrow colors with the background by 15% (factor 0.15), reducing contrast. For small icons (10px), this reduced legibility, especially for "disabled" or "inactive" states.
+**Fix:** Reduced `arrowShade` to `0.0` (pure text color).
+**Impact:** Maximum contrast for small functional icons (spinboxes, comboboxes), improving legibility at small sizes.
+
 ## Implementation Checklist for Professional UX
 To further support this workflow, future changes should follow this checklist:
 
