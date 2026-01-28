@@ -104,7 +104,7 @@ struct Metrics {
     static constexpr int ToolBar_FrameWidth = 0;
     static constexpr int ToolBar_HandleExtent = 10;
     static constexpr int ToolBar_HandleWidth = 6;
-    static constexpr int ToolBar_SeparatorWidth = 8;
+    static constexpr int ToolBar_SeparatorWidth = 4;
     static constexpr int ToolBar_ExtensionWidth = 20;
     static constexpr int ToolBar_ItemMargin = 4;
     static constexpr int ToolBar_ItemSpacing = 0;

@@ -22,13 +22,17 @@ For users managing complex layouts (e.g., an IDE with 4 panes, a debugger, and a
 **Impact:** Allows for tighter column packing, displaying more data horizontally.
 
 ### 3. Toolbar Density
-**Issue:** Toolbars in professional apps (CAD, graphic design) often contain many small icons. The default `ToolBar_ItemMargin` (6px) wastes 12px of horizontal space per button (left+right), accumulating significantly across a wide toolbar.
-**Fix:** Reduced `ToolBar_ItemMargin` from 6px to 4px.
-**Impact:** Allows for more tools to be visible on a single line, reducing the need for overflow menus.
+**Issue:** Toolbars in professional apps (CAD, graphic design) often contain many small icons. The default margins (6px) and separator widths (8px) waste significant horizontal space.
+**Fix:**
+- Reduced `ToolBar_ItemMargin` from 6px to 4px.
+- Reduced `ToolBar_SeparatorWidth` from 8px to 4px.
+**Impact:** Allows for more tools to be visible on a single line, reducing the need for overflow menus and mouse travel.
 
 ### 4. Vertical Space Optimization (Tabs)
 **Issue:** Screen height is often the most constrained resource in coding and data analysis (16:9 aspect ratios). Default tab heights consume significant vertical space.
-**Fix:** Reduced `TabBar_TabMinHeight` (30px -> 28px) and `TabBar_StaticTabMinHeight` (34px -> 30px).
+**Fix:**
+- Reduced `TabBar_TabMinHeight` from 30px to 28px.
+- Reduced `TabBar_StaticTabMinHeight` from 34px to 30px.
 **Impact:** Saves vertical pixels for the actual content (code, viewport) without compromising clickability on desktop.
 
 ## Performance & Legibility Optimization
