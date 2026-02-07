@@ -104,9 +104,9 @@ struct Metrics {
     static constexpr int ToolBar_FrameWidth = 0;
     static constexpr int ToolBar_HandleExtent = 10;
     static constexpr int ToolBar_HandleWidth = 6;
-    static constexpr int ToolBar_SeparatorWidth = 8;
+    static constexpr int ToolBar_SeparatorWidth = 4;
     static constexpr int ToolBar_ExtensionWidth = 20;
-    static constexpr int ToolBar_ItemMargin = 6;
+    static constexpr int ToolBar_ItemMargin = 4;
     static constexpr int ToolBar_ItemSpacing = 0;
     static constexpr int ToolBar_SeparatorVerticalMargin = 2;
 
@@ -128,8 +128,8 @@ struct Metrics {
     static constexpr int TabBar_TabMarginHeight = 4;
     static constexpr int TabBar_TabMarginWidth = 8;
     static constexpr int TabBar_TabMinWidth = 80;
-    static constexpr int TabBar_TabMinHeight = 30;
-    static constexpr int TabBar_StaticTabMinHeight = 34;
+    static constexpr int TabBar_TabMinHeight = 28;
+    static constexpr int TabBar_StaticTabMinHeight = 30;
     static constexpr int TabBar_TabItemSpacing = 8;
     static constexpr int TabBar_TabOverlap = 1;
     static constexpr int TabBar_BaseOverlap = 2;
@@ -147,7 +147,7 @@ struct Metrics {
     static constexpr int ToolTip_FrameWidth = 3;
 
     // list headers
-    static constexpr int Header_MarginWidth = 6;
+    static constexpr int Header_MarginWidth = 4;
     static constexpr int Header_ItemSpacing = 4;
     static constexpr int Header_ArrowSize = ArrowSize;
 
@@ -157,7 +157,7 @@ struct Metrics {
     static constexpr int SidePanel_ItemMarginWidth = 4;
 
     // splitter
-    static constexpr int Splitter_SplitterWidth = 1;
+    static constexpr int Splitter_SplitterWidth = 3;
 
     // shadow dimensions
     static constexpr int Shadow_Overlap = 2;

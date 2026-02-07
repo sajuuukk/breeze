@@ -29,12 +29,13 @@
 #include <QWindow>
 
 #include <QDialog>
+#include <QPixmapCache>
 #include <algorithm>
 
 namespace Breeze
 {
 //* contrast for arrow and treeline rendering
-static const qreal arrowShade = 0.15;
+static const qreal arrowShade = 0.0;
 
 static const qreal highlightBackgroundAlpha = 0.33;
 
@@ -1280,39 +1281,39 @@ void Helper::renderProgressBarBusyContents(QPainter *painter,
     const qreal radius(0.5 * Metrics::ProgressBar_Thickness);
 
     // setup brush
-    QPixmap pixmap(horizontal ? 2 * Metrics::ProgressBar_BusyIndicatorSize : 1, horizontal ? 1 : 2 * Metrics::ProgressBar_BusyIndicatorSize);
-    pixmap.fill(second);
-    if (horizontal) {
+    const QString key = QStringLiteral("breeze-progressbar-busy-%1-%2-%3")
+                            .arg(first.name(QColor::HexArgb), second.name(QColor::HexArgb))
+                            .arg(horizontal);
+
+    QPixmap pixmap;
+    if (!QPixmapCache::find(key, &pixmap)) {
+        pixmap = QPixmap(horizontal ? 2 * Metrics::ProgressBar_BusyIndicatorSize : 1, horizontal ? 1 : 2 * Metrics::ProgressBar_BusyIndicatorSize);
+        pixmap.fill(second);
+
         QPainter painter(&pixmap);
         painter.setBrush(first);
         painter.setPen(Qt::NoPen);
 
-        progress %= 2 * Metrics::ProgressBar_BusyIndicatorSize;
-        if (reverse) {
-            progress = 2 * Metrics::ProgressBar_BusyIndicatorSize - progress - 1;
+        if (horizontal) {
+            painter.drawRect(QRect(0, 0, Metrics::ProgressBar_BusyIndicatorSize, 1));
+        } else {
+            painter.drawRect(QRect(0, 0, 1, Metrics::ProgressBar_BusyIndicatorSize));
         }
-        painter.drawRect(QRect(0, 0, Metrics::ProgressBar_BusyIndicatorSize, 1).translated(progress, 0));
+        QPixmapCache::insert(key, pixmap);
+    }
 
-        if (progress > Metrics::ProgressBar_BusyIndicatorSize) {
-            painter.drawRect(QRect(0, 0, Metrics::ProgressBar_BusyIndicatorSize, 1).translated(progress - 2 * Metrics::ProgressBar_BusyIndicatorSize, 0));
-        }
-
-    } else {
-        QPainter painter(&pixmap);
-        painter.setBrush(first);
-        painter.setPen(Qt::NoPen);
-
-        progress %= 2 * Metrics::ProgressBar_BusyIndicatorSize;
+    progress %= 2 * Metrics::ProgressBar_BusyIndicatorSize;
+    if (reverse) {
         progress = 2 * Metrics::ProgressBar_BusyIndicatorSize - progress - 1;
-        painter.drawRect(QRect(0, 0, 1, Metrics::ProgressBar_BusyIndicatorSize).translated(0, progress));
-
-        if (progress > Metrics::ProgressBar_BusyIndicatorSize) {
-            painter.drawRect(QRect(0, 0, 1, Metrics::ProgressBar_BusyIndicatorSize).translated(0, progress - 2 * Metrics::ProgressBar_BusyIndicatorSize));
-        }
     }
 
     painter->setPen(Qt::NoPen);
     painter->setBrush(pixmap);
+    if (horizontal) {
+        painter->setBrushOrigin(progress, 0);
+    } else {
+        painter->setBrushOrigin(0, progress);
+    }
     painter->drawRoundedRect(baseRect, radius, radius);
 }
 
